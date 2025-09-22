@@ -1,0 +1,68 @@
+{
+  "expo": {
+    "name": "MediConnect",
+    "slug": "mediconnect",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mediconnect.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "MediConnect needs camera access to scan appointment cards",
+        "NSPhotoLibraryUsageDescription": "MediConnect needs photo library access to select appointment images"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.mediconnect.app",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "INTERNET"
+      ],
+      "usesCleartextTraffic": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "mediconnect"
+      }
+    },
+    "plugins": [
+      "expo-asset",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow MediConnect to access your camera to scan appointment cards"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow MediConnect to access your photos to select appointment images"
+        }
+      ]
+    ]
+  }
+}
