@@ -47,29 +47,54 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
+    console.log('Login attempt:', { email: req.body.email });
+    
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      console.log('Missing credentials');
+      return res.status(400).json({ 
+        success: false,
+        error: 'Email and password are required' 
+      });
+    }
 
     const user = await prisma.user.findUnique({
       where: { email },
     });
 
     if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      console.log('User not found:', email);
+      return res.status(401).json({ 
+        success: false,
+        error: 'Invalid email or password' 
+      });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      console.log('Invalid password for user:', email);
+      return res.status(401).json({ 
+        success: false,
+        error: 'Invalid email or password' 
+      });
+    }
+
+    if (!process.env.JWT_SECRET) {
+      console.error('JWT_SECRET is not defined');
+      throw new Error('Server configuration error');
     }
 
     const token = jwt.sign(
       { userId: user.id },
       process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
+      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
     );
 
-    res.json({
+    console.log('Login successful for user:', user.id);
+    
+    res.status(200).json({
       success: true,
       token,
       user: {
@@ -80,7 +105,10 @@ exports.login = async (req, res) => {
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Login failed' });
+    res.status(500).json({ 
+      success: false,
+      error: error.message || 'An error occurred during login' 
+    });
   }
 };
 

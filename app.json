@@ -62,6 +62,14 @@
         {
           "photosPermission": "Allow MediConnect to access your photos to select appointment images"
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
       ]
     ]
   }
