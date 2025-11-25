@@ -3,8 +3,14 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PATIENT
+  DOCTOR
+  ADMIN
 }
 
 model User {
@@ -12,6 +18,7 @@ model User {
   email     String   @unique
   password  String
   name      String
+  role      Role     @default(PATIENT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   doctors   Doctor[]
