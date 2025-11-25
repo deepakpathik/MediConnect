@@ -35,11 +35,14 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 MediConnect API server running on port ${PORT}`);
-  console.log(`📍 Health check: http://localhost:${PORT}/health`);
-  console.log(`📱 Network access: http://10.2.87.148:${PORT}/health`);
-});
+if (require.main === module) {
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 MediConnect API server running on port ${PORT}`);
+    console.log(`📍 Health check: http://localhost:${PORT}/health`);
+    console.log(`📱 Network access: http://10.2.87.148:${PORT}/health`);
+  });
+}
+
 
 const prisma = require('./config/database');
 
