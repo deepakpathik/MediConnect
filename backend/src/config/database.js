@@ -8,7 +8,7 @@ async function connectDB(retries = 5) {
   while (retries > 0) {
     try {
       await prisma.$connect();
-      console.log('✅ Database connected successfully');
+      // console.log('✅ Database connected successfully');
       return;
     } catch (error) {
       console.error(`❌ Database connection error (retries left: ${retries - 1}):`, error.message);

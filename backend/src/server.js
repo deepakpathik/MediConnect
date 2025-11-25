@@ -37,9 +37,9 @@ app.use((err, req, res, next) => {
 
 if (require.main === module) {
   server.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 MediConnect API server running on port ${PORT}`);
-    console.log(`📍 Health check: http://localhost:${PORT}/health`);
-    console.log(`📱 Network access: http://10.2.87.148:${PORT}/health`);
+    // console.log(`🚀 MediConnect API server running on port ${PORT}`);
+    // console.log(`📍 Health check: http://localhost:${PORT}/health`);
+    // console.log(`📱 Network access: http://10.2.87.148:${PORT}/health`);
   });
 }
 
@@ -50,7 +50,7 @@ async function shutdown() {
   console.log('🛑 Shutting down server...');
   await prisma.$disconnect();
   server.close(() => {
-    console.log('✅ Server closed');
+    // console.log('✅ Server closed');
     process.exit(0);
   });
 }
@@ -60,7 +60,7 @@ process.on('SIGINT', shutdown);
 process.on('SIGINT', shutdown);
 
 process.once('SIGUSR2', async () => {
-  console.log('🔄 Nodemon restarting...');
+  // console.log('🔄 Nodemon restarting...');
   await prisma.$disconnect();
   process.exit(0);
 });

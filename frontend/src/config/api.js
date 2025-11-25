@@ -3,43 +3,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 
-const getApiBaseUrl = () => {
-  // 1) Public env override (works in Expo Go with EXPO_PUBLIC_ vars)
-  const envUrl = process.env.EXPO_PUBLIC_API_URL;
-  if (envUrl && typeof envUrl === 'string' && envUrl.trim().length > 0) {
-    return envUrl;
-  }
 
-  if (__DEV__) {
-    // 2) Derive host from Expo Go/Metro host to avoid hard-coded IPs
-    // SDK 54+: prefer expoConfig.hostUri; fall back to legacy manifest fields
-    const hostUri =
-      Constants.expoConfig?.hostUri ||
-      // @ts-ignore - older fields for safety in some environments
-      Constants.manifest?.debuggerHost ||
-      Constants.manifest2?.extra?.expoClient?.hostUri;
+const API_BASE_URL = process.env.EXPO_PUBLIC_BACKEND_URL;
 
-    if (hostUri && typeof hostUri === 'string') {
-      const host = hostUri.split(':')[0];
-      return `http://${host}:2005/api`;
-    }
-
-    // 3) Fallbacks per platform if host cannot be determined
-    if (Platform.OS === 'android') {
-      // Emulator special host to reach development machine
-      return 'http://10.0.2.2:2005/api';
-    }
-    // iOS simulator default
-    return 'http://localhost:2005/api';
-  }
-
-  // 4) Production URL (use HTTPS)
-  return 'https://your-production-api.com/api';
-};
-
-const API_BASE_URL = getApiBaseUrl();
-
-console.log('API URL configured:', API_BASE_URL, 'Platform:', Platform.OS);
+// console.log('API URL configured:', API_BASE_URL, 'Platform:', Platform.OS);
 
 const API_URL = API_BASE_URL;
 
@@ -52,8 +19,8 @@ const api = axios.create({
 
 api.interceptors.request.use(
   async (config) => {
-    console.log('🌐 API Request:', config.method?.toUpperCase(), config.url);
-    console.log('📝 Request Data:', config.data);
+    // console.log('🌐 API Request:', config.method?.toUpperCase(), config.url);
+    // console.log('📝 Request Data:', config.data);
     try {
       const token = await AsyncStorage.getItem('token');
       if (token) {
@@ -76,7 +43,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    console.log(`✅ ${response.status} ${response.config.method?.toUpperCase()} ${response.config.url}`);
+    // console.log(`✅ ${response.status} ${response.config.method?.toUpperCase()} ${response.config.url}`);
     return response;
   },
   async (error) => {

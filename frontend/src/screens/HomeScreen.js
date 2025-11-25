@@ -79,7 +79,7 @@ export default function HomeScreen({ navigation }) {
           setLocationName(`${address.city || address.region}, ${address.country}`);
         }
       } catch (error) {
-        console.log("Location error:", error);
+        // console.log("Location error:", error);
         setLocationName('Location unavailable');
       }
     })();
@@ -154,7 +154,7 @@ export default function HomeScreen({ navigation }) {
                 setCurrentStepCount(pastStepCountResult.steps);
               }
             } catch (e) {
-              console.log("Failed to fetch past steps", e);
+              // console.log("Failed to fetch past steps", e);
             }
 
             // Start watching

@@ -30,7 +30,7 @@ export async function registerForPushNotificationsAsync() {
             finalStatus = status;
         }
         if (finalStatus !== 'granted') {
-            console.log('Failed to get push token for push notification!');
+            // console.log('Failed to get push token for push notification!');
             return;
         }
 
@@ -45,7 +45,7 @@ export async function registerForPushNotificationsAsync() {
             try {
                 // We don't pass projectId explicitly, letting it read from app.json or fail gracefully
                 token = (await Notifications.getExpoPushTokenAsync()).data;
-                console.log("Push Token:", token);
+                // console.log("Push Token:", token);
             } catch (innerError) {
                 // Suppress the error log for the user since we know it's an Expo Go limitation
                 // console.log("Could not fetch push token (likely Expo Go limitation):", innerError.message);
@@ -56,7 +56,7 @@ export async function registerForPushNotificationsAsync() {
             // console.log("Error in notification setup:", e);
         }
     } else {
-        console.log('Must use physical device for Push Notifications');
+        // console.log('Must use physical device for Push Notifications');
     }
 
     return token;

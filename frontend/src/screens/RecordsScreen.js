@@ -60,7 +60,8 @@ export default function RecordsScreen() {
   const fetchDiseaseDetails = async (diseaseName) => {
     try {
       setLoading(true);
-      console.log('Fetching disease details for:', diseaseName);
+      setLoading(true);
+      // console.log('Fetching disease details for:', diseaseName);
 
       const wikiResponse = await axios.get(
         `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(diseaseName)}`,
@@ -73,7 +74,7 @@ export default function RecordsScreen() {
         }
       );
 
-      console.log('Wikipedia API response received');
+      // console.log('Wikipedia API response received');
       const data = wikiResponse.data;
 
       setSelectedDisease({
