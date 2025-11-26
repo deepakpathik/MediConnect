@@ -398,7 +398,7 @@ export default function HomeScreen({ navigation }) {
               </View>
 
               <Text variant="titleMedium" style={[styles.sectionTitle, { color: theme.colors.onSurface, opacity: 0.8 }]}>
-                Patient Health Overview
+                Health Overview
               </Text>
               <Card style={[styles.card, { backgroundColor: theme.colors.surface, marginBottom: 16 }]} mode="elevated">
                 <Card.Cover source={{ uri: 'https://img.freepik.com/free-vector/medical-checkup-concept-illustration_114360-1702.jpg' }} style={{ height: 150 }} />
