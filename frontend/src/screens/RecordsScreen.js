@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View, StyleSheet, ScrollView, FlatList } from "react-native";
-import { Appbar, Text, Searchbar, Card, ActivityIndicator, Chip } from "react-native-paper";
+import { Appbar, Text, Searchbar, Card, ActivityIndicator, Chip, IconButton } from "react-native-paper";
 import { ThemeContext } from "../context/ThemeContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import axios from "axios";
@@ -172,6 +172,12 @@ export default function RecordsScreen() {
             <Card style={[styles.detailCard, { backgroundColor: theme.colors.surface }]}>
               <Card.Content>
                 <View style={styles.detailHeader}>
+                  <IconButton
+                    icon="arrow-left"
+                    size={24}
+                    onPress={() => setSelectedDisease(null)}
+                    style={{ marginRight: 8, margin: 0 }}
+                  />
                   <MaterialCommunityIcons
                     name="medical-bag"
                     size={40}
