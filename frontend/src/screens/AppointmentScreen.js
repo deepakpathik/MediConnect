@@ -789,7 +789,7 @@ export default function AppointmentScreen({ route, navigation }) {
               style={{ marginBottom: 16, borderColor: theme.colors.primary }}
               textColor={theme.colors.primary}
             >
-              Scan Business Card
+              Scan Clinic Card
             </Button>
 
             <TextInput

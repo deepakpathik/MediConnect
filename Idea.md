@@ -72,3 +72,7 @@ A mobile-first app built with **React Native** (frontend), **Node.js** (backend)
 ## 🔟 Additional Notes
 - Can be expanded for **multi-hospital networks**
 - Future scope: AI-powered health predictions based on medical history
+
+## 1️⃣1️⃣ App Demo / Screen Recording
+- [Watch App Demo Video](./app_recording.mp4)
+
