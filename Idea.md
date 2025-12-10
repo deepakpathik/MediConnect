@@ -75,4 +75,5 @@ A mobile-first app built with **React Native** (frontend), **Node.js** (backend)
 
 ## 1️⃣1️⃣ App Demo / Screen Recording
 - [Watch App Demo Video](./app_recording.mp4)
+https://drive.google.com/file/d/1SzQ6-0sgQn80o_GEN3a097_rL-H68jRA/view?usp=sharing
 
